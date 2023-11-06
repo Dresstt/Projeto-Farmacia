@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LowPharmacy</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.logo img {
+    height: 90px;
+}
+
+.search input {
+    padding: 5px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-button {
+    background-color: #fff;
+    color: #007bff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+.cart-container {
+    position: fixed;
+    top: 0;
+    right: -300px; 
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    transition: right 0.3s;
+}
+
+.cart {
+    padding: 20px;
+}
+.txt_car{
+    border: none ;
+    border-radius: 5px;
+}
+.go-to-cart {
+    background-color: #33b5e5; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none;
+    padding: 10px;
+    border-radius: 5px; /* Borda arredondada */
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px; /* Espaçamento superior */
+    position: relative;
+    left: 75px;
+    top: 490px;
+    z-index: 999;
+}
+
+.go-to-cart:hover {
+    background-color: #007bff; /* Cor de fundo do botão quando hover */
+    color: #fff; /* Cor do texto do botão quando hover */
+}
+.close-cart {
+    width: 100%;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position:relative;
+    left: 10px;
+    bottom: 25px;
+    right: 10px;
+    top: 500px;
+    z-index: 999;
+    border-radius: 5px;
+}
+.carrinho {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.carrinho:hover {
+    background-color: #0056b3;
+}
+.cart img {
+    height: 60px;
+}
+
+.carrinho{
+    background-color: #fff;
+    color: #007bff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.dp{
+    background-color: #7d73ee;
+    margin: 0%;
+    }
+
+.galery{
+    width: 720px;
+    height: 508px;
+    left: 110%;
+}
+
+
+/* Reset as list styles */
+ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilize os itens do menu principal */
+ul.menu > li.category {
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+    background-color: #33b5e5; /* Cor de fundo das categorias */
+    padding: 10px 20px;
+    border-radius: 5px; /* Borda retangular */
+}
+
+/* Estilize os links do menu principal */
+ul.menu > li.category > a {
+    text-decoration: none;
+    color: #fff; /* Cor do texto do link */
+}
+
+/* Estilize as subcategorias */
+ul.menu > li.category > .submenu {
+    display: none;
+    position: absolute;
+    background-color: #fff; /* Cor de fundo das subcategorias */
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px; /* Borda retangular */
+    animation: fadeIn 0.3s ease; /* Animação de fade-in */
+}
+
+/* Animação para mostrar as subcategorias */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Mostrar subcategorias ao passar o mouse sobre as categorias */
+ul.menu > li.category:hover > .submenu {
+    display: block;
+}
+
+/* Estilize os links das subcategorias */
+ul.menu > li.category > .submenu > a {
+    text-decoration: none;
+    color: #333; /* Cor do texto do link */
+    display: block;
+    margin: 5px 0;
+}
+
+/* Adicione estilo quando o mouse passar por cima das subcategorias */
+ul.menu > li.category > .submenu > a:hover {
+    background-color: #f0f0f0; /* Cor de fundo quando passar o mouse por cima */
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.maisvisto{
+    text-align: center;
+    background-color: #33b5e5; 
+}
+
+.destaque{
+    text-align: center;
+    background-color: #33b5e5;
+}
+
+
+
+.add-to-cart {
+    background-color: #33b5e5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-to-cart:hover {
+    background-color: #33b5e5;
+}
+
+.footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+
+}
+.product-container {
+  width: 200px;
+  border: 2px solid #ddd;
+  padding: 30px;
+  text-align: center;
+  margin: 20px;
+  display: inline-block;
+  
+}
+
+.product-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-container h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.product-container .price {
+    font-size: 20px;
+  font-weight: bold;
+  color: #f00; /* Cor do preço */
+}
+
+.product-container .add-to-cart {
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-container .add-to-cart:hover {
+  background-color: #0056b3; /* Cor de fundo do botão quando hover */
+}
+
+
+
+
+.swiper {
+      width: 80%;
+      height: 80%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 80%;
+      height: 70%px;
+      object-fit: cover;
+    }
+
+
+
+
+    /*footer*/
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+footer{
+    background-color: #007bff;
+    padding: 50px 0;
+}
+.container-footer{
+    max-width: 1400px;
+    padding: 0 4%;
+    margin: auto;
+}
+.row-footer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-col{
+    width: 25%;
+    padding: 0 15px;
+}
+.footer-col h4{
+    font-size: 22px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 500;
+    position: relative;
+    text-transform: uppercase;
+}
+.footer-col ul{
+    list-style: none;
+}
+.footer-col ul li{
+    margin: 10px 0;
+}
+.footer-col ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+    color: #cecdcd;
+    padding-left: 10px;
+}
+.footer-col .medias-socias{
+    margin-top: 30px;
+}
+.footer-col .medias-socias a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    border-radius: 50%;
+    color: white;
+    border: 1px solid white;
+    transition: all 0.5s ease;
+}
+.footer-col .medias-socias a i{
+    font-size: 20px;
+}
+
+.footer-col .medias-socias a:hover{
+    color: #007bff;
+    background-color: white;
+}
+.footer-col .form-sub input{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    border: 1px solid white;
+    color: white;
+    background-color: #007bff;
+}
+.footer-col .form-sub input::placeholder{
+    color: white;
+}
+.footer-col .form-sub button{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px; 
+    font-size: 17px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: white;        
+}
+/* Responsivo */
+@media (max-width: 800px) {
+    .footer-col{
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}
+@media (max-width:600px) {
+    .footer-col{
+        width: 100%;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img class=".logo" src="file:///C:/Users/kelvin.oliveira/OneDrive%20-%20SULGIPE/Imagens/Logo%20da%20Farmacia%20com%20frufru%20-%20teste%20final.jpg" alt="Logo">
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Pesquisar">
+            <button class="search-button">Pesquisar</button>
+        </div>
+        <a href="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\Pag de login.html"><button class="carrinho" type="submit">Login</button></a>
+        
+        <div id="carrinho_compras">
+        <carrinho><button class="carrinho" id="open-cart" type="submit">Carrinho</button></carrinho>
+            <div id="cart-container" class="cart-container">
+                <div class="cart">
+
+                <header id="txt_car" class="title_car"><h2 >Carrinho de Compras</h2></header>
+                <main><ul id="cart-items">
+                    <!-- Itens do carrinho serão exibidos aqui -->
+                    </ul>
+                ><p>Total: R$ <span id="cart-total">0.00</span></p></main>
+                <button id="go-to-cart" class="go-to-cart">Ir ao carrinho</button>
+                <button id="close-cart" class="close-cart">Fechar</button>
+            </div>
+            </div>
+            <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\carrinho-de-compras.png" width="27" height="27" id="imgcarrinho_compras"/>
+        </div>
+        </div>
+    </header>
+        <script>
+            const openCartButton = document.getElementById("open-cart");
+            const closeCartButton = document.getElementById("close-cart");
+            const cartContainer = document.getElementById("cart-container");
+            
+            openCartButton.addEventListener("click", function () {
+            cartContainer.style.right = "0";
+            });
+    
+            closeCartButton.addEventListener("click", function () {
+            cartContainer.style.right = "-300px";
+            
+            });
+            document.getElementById("go-to-cart").addEventListener("click", function() {
+    // Redireciona o usuário para a página do carrinho (substitua a URL pela URL correta)
+                window.location.href = "caminho_da_pagina_do_carrinho.html";
+            });
+        </script>
+        
+        <script>
+            const cartItems =[]
+            let cartTotal= 0
+            
+
+            function addToCartLogic(item){
+                const existingItem = cartItems.find((cartItem=> cartItem.id==item.id))
+                if (existingItem) {
+                    // Se o item já estiver no carrinho, aumente a quantidade
+                    existingItem.quantity += 1;
+                } else {
+                // Caso contrário, adicione o item ao carrinho
+                    item.quantity = 1;
+                    cartItems.push(item);
+    }
+            }
+            function updateCartDisplay() {
+                const cartItemsElement = document.getElementById('cart-items');
+
+                    // Limpa o conteúdo atual do carrinho
+                    cartItemsElement.innerHTML = '';
+
+                    // Loop pelos itens no carrinho e cria elementos HTML para exibição
+                    cartItems.forEach((item) => {
+                        const li = document.createElement('li');
+                        li.textContent = `${item.name} - Quantidade: ${item.quantity}`;
+                        cartItemsElement.appendChild(li);
+                        });
+                }
+            function addToCart(button) {
+                    // Encontre o elemento pai do botão que representa o produto
+                    const product = button.parentElement.parentElement;
+
+                    // Obtenha os dados do produto a partir dos atributos de data
+                    const productId = product.getAttribute('data-product-id');
+                    const productName = product.getAttribute('data-product-name');
+                    const productPrice = parseFloat(product.getAttribute('data-product-price'));
+
+                    // Crie um objeto que representa o item do carrinho
+                    const cartItem = {
+                        id: productId,
+                        name: productName,
+                        price: productPrice,
+                    };
+
+                    // Adicione o item do carrinho ao carrinho
+                    addToCartLogic(cartItem);
+
+                    // Atualize a exibição do carrinho ou faça outras ações desejadas
+                    updateCartDisplay();
+                }
+
+
+        </script>
+        <ul class="menu">
+        <li class="category">
+            <a href="#">Medicamentos</a>
+            <div class="submenu">
+                <a href="#">Analgésicos</a>
+                <a href="#">Antibióticos</a>
+                <a href="#">Vitaminas</a>
+            </div>
+        </li>
+        <li class="category">
+            <a href="#">Saúde e Bem-Estar</a>
+            <div class="submenu">
+                <a href="#">Cuidados com a pele</a>
+                <a href="#">Suplementos</a>
+                <a href="#">Higiene pessoal</a>
+            </div>
+        </li>
+        <li class="category">
+            <a href="#">Produtos de Beleza</a>
+            <div class="submenu">
+                <a href="#">Maquiagem</a>
+                <a href="#">Cuidados com o cabelo</a>
+            </div>
+        </li>
+        <li class="category">
+            <a href="#">Acessórios</a>
+        </li>
+    </ul>
+    <br>
+    <br>
+    <br>
+
+       <main class="main">
+        
+        <section class="galery">
+            <div class="fotos">
+                <img src= "C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Foto1.png" alt="Foto 1">
+                <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Foto2.png" alt="Foto 2">
+                <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Ftoto3.png" alt="Foto 3">
+                <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Ftoto4.png" alt="Foto 4">
+                <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Foto1.png" alt="Foto 1">
+            </div>         
+        </section>
+       
+     </main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="maisvisto">Produtos mais visitados no momento</h1>
+    <br>
+
+    <div class="product-container" data-product-id="1" data-product-name="Pampers" data-product-price="149.99">
+        <img src="C:\Users\kelvin.oliveira\Downloads\Frauda.png" alt="Fralda">
+        <h3>Pampers</h3>
+        <p>XG-60-Unidades</p>
+        <p class="price">$149,99</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div>
+
+      <div class="product-container" data-product-id="2" data-product-name="Colgate_sensitive" data-product-price="15.90">
+        <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Colgate.png" alt="Colgate">
+        <h3>Colgate Sensitive</h3>
+        <p>Pasta de Dente </p>
+        <p class="price">$15,90</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div>
+
+      <div class="product-container" data-product-id="3" data-product-name="Listerine" data-product-price="19.99">
+        <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Listerine.png" alt="Listerine">
+        <h3>Listerine</h3>
+        <p>Enxaguante Bucal</p>
+        <p class="price">$19.99</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div>
+
+      <div class="product-container" data-product-id="4" data-product-name="Hipoglos" data-product-price="19.99">
+        <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Hipoglos.png" alt="Hipoglos">
+        <h3>Hipoglós</h3>
+        <p>Pomada Hipoglós </p>
+        <p class="price">$19.99</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div>
+
+      <div class="product-container" data-product-id="5" data-product-name="Neutrogena" data-product-price="61.99">
+        <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\neutrogena.png" alt="neutrogena">
+        <h3>Neutrogena</h3>
+        <p>Hidratante Facial</p>
+        <p class="price">$61.99</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div> 
+
+      <div class="product-container" data-product-id="6" data-product-name="Allegra" data-product-price="30.99">
+        <img src="C:\Users\kelvin.oliveira\OneDrive - SULGIPE\Área de Trabalho\EfeitoCarrossel\EfeitoCarrossel\img\Destaques1.png" alt="Allegra">
+        <h3>Allegra</h3>
+        <p>Antilérgico Allegra</p>
+        <p class="price">$30.99</p>
+        <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
+      </div>
+      
+      
+
+    <h1 class="destaque">Destaques da Semana</h1>
+    
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="C:\Users\kelvin.oliveira\Downloads\Testepgg.png" alt="Slide1"></div>       
+        <div class="swiper-slide"><img src="C:\Users\kelvin.oliveira\Downloads\Carrosel.png" alt="Slide2"></div>
+        <div class="swiper-slide"><img src="C:\Users\kelvin.oliveira\Downloads\Tresemme.png" alt="Slide3"></div>
+        <div class="swiper-slide"><img src="C:\Users\kelvin.oliveira\Downloads\Sol.png" alt="Slide4"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      
+      
+
+      <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+      <script>
+        var swiper = new Swiper(".mySwiper", {
+          cssMode: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          pagination: {
+            el: ".swiper-pagination",
+          },
+          mousewheel: true,
+          keyboard: true,
+        });
+      </script>
+
+
+
+        <footer>
+            <div class="container-footer">
+                <div class="row-footer">
+                    <div class="footer-col">
+                        <h4>Atendimento</h4>
+                        <ul>
+                            <li><a href="#"> Central de Atendimentos </a></li>
+                            <li><a href=""> Politica de Privacidade </a></li>
+                            <li><a href=""> Formas de Pagamento </a></li>
+                            <li><a href=""> Perguntas Frequentes </a></li>
+                        </ul>
+                    </div>
+               
+                    <div class="footer-col">
+                        <h4> Serviços</h4>
+                        <ul>
+                            <li><a href="#"> Compre Online e retire na Loja </a></li>
+                            <li><a href="#"> Programa de Assinaturas </a></li>
+                            <li><a href="#"> Desconto de Laboratório </a></li>
+                            <li><a href="#"> Serviços de Saúde </a></li>
+                            <li><a href="#"> Fórmulas Manipuladas </a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Institucional</h4>
+                        <ul>
+                            <li><a href="#"> Nossa loja </a></li>
+                            <li><a href="#"> Trabalhe Conosco </a></li>
+                            <li><a href="#"> Nossa Historia </a></li>
+                            <li><a href="#"> Investidores</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer-col">
+                        <h4> RECEBA AS MELHORES OFERTAS!</h4>
+                        <div class="form-sub">
+                            <form>
+                                <input type="email" placeholder="Digite o seu e-mail" required>
+                                <button> >>> </button>
+                            </form>
+                        </div>
+    
+                        <div class="medias-socias">
+                            <a href="#"> <i class="fa fa-facebook"></i> </a>
+                            <a href="https://www.instagram.com/low.pharmacy/"> <i class="fa fa-instagram"></i> </a>
+                            <a href="#"> <i class="fa fa-twitter"></i> </a>
+                            <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+    </footer>
+
+  
+
+</body>
+
+</html>
